@@ -5,4 +5,5 @@ export * from './constants';
 export * from './functions';
 
 import './middleware';
+import './custom-middleware';
 import './reducer';

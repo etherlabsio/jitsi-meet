@@ -1,4 +1,5 @@
 // @flow
+// Modifications Copyright (C) 2019 Ether Labs LLC
 
 import React from 'react';
 import { NativeModules, SafeAreaView, StatusBar } from 'react-native';
@@ -251,17 +252,16 @@ class Conference extends AbstractConference<Props, *> {
 
         return (
             <>
-                <AddPeopleDialog />
+              {/*  <AddPeopleDialog />
                 <Chat />
-                <SharedDocument />
+                <SharedDocument /> */}
 
                 {/*
                   * The LargeVideo is the lowermost stacking layer.
-                  */
+
                     _shouldDisplayTileView
-                        ? <TileView onClick = { this._onClick } />
-                        : <LargeVideo onClick = { this._onClick } />
-                }
+                        ? <TileView onClick = { this._onClick } /> : */}
+                <LargeVideo />
 
                 {/*
                   * If there is a ringing call, show the callee's info.
@@ -270,14 +270,14 @@ class Conference extends AbstractConference<Props, *> {
                 }
 
                 {/*
-                  * The activity/loading indicator goes above everything, except
-                  * the toolbox/toolbars and the dialogs.
-                  */
-                    _connecting
-                        && <TintedView>
+                 * The activity/loading indicator goes above everything, except
+                 * the toolbox/toolbars and the dialogs.
+                 */
+                    _connecting && (
+                        <TintedView>
                             <LoadingIndicator />
                         </TintedView>
-                }
+                    )}
 
                 <SafeAreaView
                     pointerEvents = 'box-none'
@@ -308,7 +308,7 @@ class Conference extends AbstractConference<Props, *> {
                     {/*
                       * The Toolbox is in a stacking layer below the Filmstrip.
                       */}
-                    <Toolbox />
+                    { /* <Toolbox /> */}
 
                     {/*
                       * The Filmstrip is in a stacking layer above the

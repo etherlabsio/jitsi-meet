@@ -122,6 +122,11 @@ function _electParticipantInLargeVideo(state) {
     let participant = participants.find(p => p.pinned);
     let id = participant && participant.id;
 
+    const localParticipant = participants.find(p => p.local);
+
+    if (participants && participants.length < 3 && !localParticipant.pinned) {
+        return participants.find(p => p.local).id;
+    }
     if (!id) {
         // 2. No participant is pinned so get the dominant speaker. But the
         //    local participant won't be displayed in LargeVideo even if she is

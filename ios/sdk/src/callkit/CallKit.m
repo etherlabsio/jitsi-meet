@@ -201,9 +201,10 @@ RCT_EXPORT_METHOD(updateCall:(NSString *)callUUID
 
     NSString *displayName = options[@"displayName"];
     BOOL hasVideo = [(NSNumber*)options[@"hasVideo"] boolValue];
+    NSString *handle = options[@"handle"] ? options[@"handle"] : nil;
 
     [JMCallKitProxy reportCallUpdateWith:callUUID_
-                                  handle:nil
+                                  handle:handle
                              displayName:displayName
                                 hasVideo:hasVideo];
 

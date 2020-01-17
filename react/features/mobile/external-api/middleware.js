@@ -198,6 +198,12 @@ function _sendConferenceEvent(
     if (conference) {
         data.url = _normalizeUrl(conference[JITSI_CONFERENCE_URL_KEY]);
     }
+    const str = store.getState()
+    const participants = str && str['features/base/participants'];
+
+    if (participants && participants.length > 0) {
+        data.participantId = participants.filter(p => p.local)[0].id;
+    }
 
     if (_swallowEvent(store, action, data)) {
         return;

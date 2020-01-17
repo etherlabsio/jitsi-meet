@@ -26,6 +26,7 @@ export async function loadConfig(url: string): Promise<Object> {
         }
 
         logger.info(`Config loaded from ${url}`);
+        config.channelLastN = 1;
 
         return config;
     } catch (err) {

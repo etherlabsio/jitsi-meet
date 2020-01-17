@@ -38,7 +38,7 @@ if (CallKit) {
         registerSubscriptions(context, delegate) {
             CallKit.setProviderConfiguration({
                 iconTemplateImageName: 'CallKitIcon',
-                localizedName: getName()
+                localizedName: 'EtherMeet'
             });
 
             return [
