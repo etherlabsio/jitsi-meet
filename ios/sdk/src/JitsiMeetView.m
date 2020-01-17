@@ -1,6 +1,7 @@
 /*
  * Copyright @ 2018-present 8x8, Inc.
  * Copyright @ 2017-2018 Atlassian Pty Ltd
+ * Modifications Copyright (C) 2019 Ether Labs LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +23,7 @@
 #import "JitsiMeetView+Private.h"
 #import "ReactUtils.h"
 #import "RNRootView.h"
-
+#import "ExternalAPI.h"
 
 /**
  * Backwards compatibility: turn the boolean prop into a feature flag.
@@ -114,7 +115,30 @@ static void initializeViewsMap() {
 - (void)leave {
     [self setProps:@{}];
 }
-
+- (void)toggleAudio:(BOOL)mute {
+    ExternalAPI *externalApi = [ExternalAPI getExternalApi];
+    [externalApi toggleAudio:mute];
+}
+- (void)toggleVideo:(BOOL)mute {
+    ExternalAPI *externalApi = [ExternalAPI getExternalApi];
+    [externalApi toggleVideo:mute];
+}
+- (void)end_call{
+    ExternalAPI *externalApi = [ExternalAPI getExternalApi];
+    [externalApi endCall];
+}
++ (void)setCallKitUrl:(NSString *)url {
+    ExternalAPI *externalApi = [ExternalAPI getExternalApi];
+    [externalApi setCallKitUrl:url];
+}
++ (void)setCallKitName:(NSString *)name {
+    ExternalAPI *externalApi = [ExternalAPI getExternalApi];
+    [externalApi setCallKitName:name];
+}
++ (void)setCallKitProvider{
+    ExternalAPI *externalApi = [ExternalAPI getExternalApi];
+    [externalApi setCallKitProvider];
+}
 #pragma mark Private methods
 
 /**

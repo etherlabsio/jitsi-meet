@@ -22,6 +22,8 @@ export default {
     filmstripNarrow: {
         flexDirection: 'row',
         flexGrow: 0,
+        alignSelf: 'center',
+        bottom: 70,
         justifyContent: 'flex-end',
         height: FILMSTRIP_SIZE
     },

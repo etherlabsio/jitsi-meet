@@ -269,16 +269,22 @@ function _conferenceWillJoin({ dispatch, getState }, next, action) {
     // it upper cased.
     conference.callUUID = (callUUID || uuid.v4()).toUpperCase();
 
-    CallIntegration.startCall(conference.callUUID, handle, hasVideo)
+    const { callKitName } = getState()['features/mobile/external-api'];
+    const { callKitUrl } = getState()['features/mobile/external-api'];
+
+    CallIntegration.startCall(
+        conference.callUUID,
+        callKitUrl || 'https://meet.etherlabs.io',
+        true
+    )
         .then(() => {
             const displayName = getConferenceName(state);
 
-            CallIntegration.updateCall(
-                conference.callUUID,
-                {
-                    displayName,
-                    hasVideo
-                });
+            CallIntegration.updateCall(conference.callUUID, {
+                handle: callKitUrl || 'https://meet.etherlabs.io',
+                displayName: callKitName || 'EtherLabs Meeting',
+                hasVideo: true
+            });
 
             // iOS 13 doesn't like the mute state to be false before the call is started
             // so delay it until the conference was joined.

@@ -1,5 +1,6 @@
 /*
  * Copyright @ 2017-present Atlassian Pty Ltd
+ * Modifications Copyright (C) 2019 Ether Labs LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,23 +16,69 @@
  */
 
 #import <React/RCTBridgeModule.h>
-
 #import "JitsiMeetView+Private.h"
+#import <React/RCTEventEmitter.h>
+#import "ExternalAPI.h"
 
-@interface ExternalAPI : NSObject<RCTBridgeModule>
-@end
+// @interface ExternalAPI : NSObject<RCTBridgeModule>
+// @end
 
-@implementation ExternalAPI
+// @implementation ExternalAPI
+@implementation ExternalAPI{
+}
+static ExternalAPI *externalApi;
 
 RCT_EXPORT_MODULE();
 
 /**
  * Make sure all methods in this module are invoked on the main/UI thread.
  */
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
 - (dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
 }
+- (NSArray<NSString *> *)supportedEvents
+{
+    return @[@"toggle-audio",@"toggle-video",@"end-call",@"set-call-kit-url", @"set-call-kit-name", @"set-call-kit-provider"] ;
+}
 
+- (void)toggleAudio:(BOOL)mute
+{
+    [self sendEventWithName:@"toggle-audio" body:@{@"mute": @(mute)}];
+}
+- (void)toggleVideo:(BOOL)mute
+{
+    [self sendEventWithName:@"toggle-video" body:@{@"mute": @(mute)}];
+}
+- (void)endCall
+{
+    [self sendEventWithName:@"end-call" body:@{}];
+}
+- (void)setCallKitUrl:(NSString *)url
+{
+    [self sendEventWithName:@"set-call-kit-url" body:@{@"url": url}];
+}
+- (void)setCallKitName:(NSString *)name
+{
+    [self sendEventWithName:@"set-call-kit-name" body:@{@"name": name}];
+}
+- (void)setCallKitProvider
+{
+    [self sendEventWithName:@"set-call-kit-provider" body:@{}];
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        externalApi = self;
+    }
+    return self;
+}
++ (instancetype)getExternalApi {
+    return externalApi;
+}
 /**
  * Dispatches an event that occurred on JavaScript to the view's delegate.
  *
@@ -88,3 +135,4 @@ RCT_EXPORT_METHOD(sendEvent:(NSString *)name
 }
 
 @end
+
