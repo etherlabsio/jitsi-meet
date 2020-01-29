@@ -11,7 +11,7 @@ export default function getRoomName(): ?string {
     const path = window.location.pathname;
 
     // The last non-directory component of the path (name) is the room.
-    const roomName = path.substring(path.lastIndexOf('/') + 1) || undefined;
+    const roomName = path || undefined;
 
     return getBackendSafeRoomName(roomName);
 }

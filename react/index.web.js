@@ -6,24 +6,27 @@ import ReactDOM from 'react-dom';
 import { getJitsiMeetTransport } from '../modules/transport';
 
 import { App } from './features/app';
-import { getLogger } from './features/base/logging/functions';
+
+// import { getLogger } from './features/base/logging/functions';
 import { Platform } from './features/base/react';
 
-const logger = getLogger('index.web');
+// const logger = getLogger('index.web');
 const OS = Platform.OS;
 
 /**
  * Renders the app when the DOM tree has been loaded.
  */
-document.addEventListener('DOMContentLoaded', () => {
-    const now = window.performance.now();
+// document.addEventListener('DOMContentLoaded', () => {
+//     const now = window.performance.now();
 
-    APP.connectionTimes['document.ready'] = now;
-    logger.log('(TIME) document ready:\t', now);
+//     APP.connectionTimes['document.ready'] = now;
+//     logger.log('(TIME) document ready:\t', now);
 
-    // Render the main/root Component.
-    ReactDOM.render(<App />, document.getElementById('react'));
-});
+//     // Render the main/root Component.
+//     ReactDOM.render(<App />, document.getElementById('react'));
+// });
+
+ReactDOM.render(<App />, document.getElementById('react'));
 
 // Workaround for the issue when returning to a page with the back button and
 // the page is loaded from the 'back-forward' cache on iOS which causes nothing

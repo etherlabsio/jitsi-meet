@@ -431,7 +431,7 @@
     height: 35px;
     z-index: $zindex2;
     border: none;
-
+    overflow: hidden;
     .audiodot-top,
     .audiodot-bottom,
     .audiodot-middle {

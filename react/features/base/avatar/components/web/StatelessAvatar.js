@@ -90,7 +90,7 @@ export default class StatelessAvatar extends AbstractStatelessAvatar<Props> {
             <img
                 className = { this._getAvatarClassName('defaultAvatar') }
                 id = { this.props.id }
-                src = { this.props.defaultAvatar || 'images/avatar.png' }
+                src = { this.props.defaultAvatar || '/images/avatar.png' }
                 style = { this._getAvatarStyle() } />
         );
     }

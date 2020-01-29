@@ -2,23 +2,6 @@
 /**
  * RESET
  */
-html,
-body,
-p,
-div,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-pre,
-form,
-fieldset {
-  margin: 0;
-  padding: 0;
-}
 ul,
 ol,
 dl {
@@ -79,21 +62,7 @@ body {
 [lang|=ja] {
   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", Verdana, Arial, sans-serif;
 }
-/* Default margins */
-p,
-ul,
-ol,
-dl,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-blockquote,
-pre {
-  margin: 10px 0 0 0;
-}
+
 /* No top margin to interfere with box padding */
 p:first-child,
 ul:first-child,
@@ -110,30 +79,6 @@ pre:first-child {
   margin-top: 0;
 }
 /* Headings: desired line height in px / font size = unitless line height */
-h1 {
-  color: #333;
-  font-size: 32px;
-  font-weight: normal;
-  line-height: 1.25;
-  text-transform: none;
-  margin: 30px 0 0 0;
-}
-h2 {
-  color: #333;
-  font-size: 24px;
-  font-weight: normal;
-  line-height: 1.25;
-  text-transform: none;
-  margin: 30px 0 0 0;
-}
-h3 {
-  color: #333;
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 1.5;
-  text-transform: none;
-  margin: 30px 0 0 0;
-}
 h4 {
   font-size: 16px;
   font-weight: bold;

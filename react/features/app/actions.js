@@ -65,8 +65,14 @@ export function appNavigate(uri: ?string) {
         }
 
         location.protocol || (location.protocol = 'https:');
-        const { contextRoot, host, room } = location;
+        const { contextRoot, host } = location;
+
+        let { room } = location;
+
+        room = window.config.room || room;
+
         const locationURL = new URL(location.toString());
+
 
         // Disconnect from any current conference.
         // FIXME: unify with web.
